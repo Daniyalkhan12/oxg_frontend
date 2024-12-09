@@ -1,0 +1,12 @@
+.product-section {
+    display: flex;
+    overflow-x: auto; 
+  }
+  
+  .image-container {
+    display: flex;
+  }
+  
+  .image-container img {
+    margin-right: 10px; 
+  }

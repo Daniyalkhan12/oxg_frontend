@@ -1,0 +1,19 @@
+.table-container {
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  .table-row {
+    display: flex;
+  }
+  
+  .table-header {
+    background-color: #f0f0f0;
+    padding: 5px;
+    font-weight: bold;
+  }
+  
+  .table-cell {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
