@@ -12,6 +12,18 @@ import { useState, useEffect } from 'react';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
+  const [selectedComponent, setSelectedComponent] = useState('Home'); // Default selected component
+  const [currentCategory, setCurrentCateogry] = useState(0);
+  useEffect(() => {
+    // Update the page title based on the selected component
+    document.title = `Material Manager - ${selectedComponent}`; 
+  }, [selectedComponent]);
+
+  const handleComponentChange = (newComponent) => {
+    const itemValue = newComponent.split("%")
+    setSelectedComponent(itemValue[0]);
+    setCurrentCateogry(itemValue[1])
+  };
   useEffect(() => {
     // Check if user is logged in (e.g., by checking local storage)
     const storedToken = localStorage.getItem('token'); 
@@ -24,20 +36,32 @@ function App() {
     <div className="App">
       {isLoggedIn ? (
         <> 
-          <NavBar />
+          <NavBar setIsLoggedIn={setIsLoggedIn}/>
           <div className="container">
-            <Sidebar />
+            <Sidebar 
+        selectedComponent={selectedComponent} 
+        onComponentChange={handleComponentChange} />
             <div className="main-content">
-              <div className="row">
-                <ProductInformation />
-                <Pdf />
+              <div className="row"
+                    style={{
+                      textAlign: 'center', 
+                      fontSize: '1.2rem', 
+                      fontWeight: 'bold', 
+                      marginBottom: '1rem',
+                      display: 'block'
+                    }}>
+                    {selectedComponent}
               </div>
               <div className="row">
-                <Table />
+                <ProductInformation categoryID={currentCategory}/>
+                <Pdf categoryID={currentCategory}/>
+              </div>
+              <div className="row">
+                <Table categoryID={currentCategory} />
                 <Brandschutzrohr />
               </div>
               <div className="row">
-                <ProductImage />
+                <ProductImage categoryID={currentCategory}/>
               </div>
             </div>
           </div>

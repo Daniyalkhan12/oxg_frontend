@@ -7,11 +7,11 @@ const Brandschutzrohr = () => {
       <div className="heading-container">
         <span>Brandschutzrohr (B2ca)</span>
       </div>
-      <div className="pipe-container">
+      {/* <div className="pipe-container">
       </div>
       <div className="text-container">
       </div>
-      <img src='' alt="Flame Icon" className="brandschutz-text-icon" /> 
+      <img src='' alt="Flame Icon" className="brandschutz-text-icon" />  */}
 
     </div>
   );

@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./ProductInformation.css";
 
-function Table() {
-  const [tableData, setTableData] = useState([
-    { Hersteller: 'GM-Plast', Typ: 'Distribution', Produkt: 'Microdukt 12x 10/6mm', Beschreibung: 'Mantelfarbe orange - mit Farbstreifen auf Verbundrohrmantel mit 4x Farbstreifen und 10° versetzt (VDE DIN Farbcode)', BestellNr: 'nicht bekannt' },
-    { Hersteller: 'EGE-Plast', Typ: 'Feeder', Produkt: 'Microdukt 4x 14/10mm', Beschreibung: '', BestellNr: '' },
-    { Hersteller: 'Hexatronic', Typ: 'Agg Netz', Produkt: 'Microdukt 4x 14/10mm', Beschreibung: '', BestellNr: '' },
-    { Hersteller: 'Rehau', Typ: 'Trench', Produkt: 'Singleduct 1x 10/6mm', Beschreibung: '', BestellNr: '' },
-    { Hersteller: 'Acome', Typ: 'Inhausrohre', Produkt: 'Singleduct 1x 7/5mm (82ca)', Beschreibung: '', BestellNr: '' },
-  ]);
+function Table({ categoryID }) {
+  const [tableData, setTableData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch products by categoryID using fetch API
+    const fetchProducts = async () => {
+      setLoading(true); // Set loading state
+      setError(null); // Reset error state
+      try {
+        console.log(process.env.REACT_APP_API_URL)
+        const response = await fetch(
+          `http://127.0.0.1:8000/material/products/?categoryID=${categoryID}`,
+          {          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+
+        const data = await response.json();
+        console.log("product information", data) 
+        if (!(typeof data === 'string' || data instanceof String))
+          setTableData(data); // Update table data with the fetched products
+        else
+          setTableData(null)
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to load product data.");
+      } finally {
+        setLoading(false); // Reset loading state
+        // console.log(tableData)
+      }
+    };
+
+    if (categoryID) {
+      fetchProducts();
+    }
+  }, [categoryID]); // Run when `categoryID` changes
+
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
 
   return (
     <table border={1} className="table">
@@ -22,15 +62,22 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {tableData.map((row, index) => (
-          <tr key={index}>
-            <td>{row.Hersteller}</td>
-            <td>{row.Typ}</td>
-            <td>{row.Produkt}</td>
-            <td>{row.Beschreibung}</td>
-            <td>{row.BestellNr}</td>
+        {tableData && tableData.length > 0 ? (
+          tableData.map((row, index) => (
+            <tr key={index}>
+              <td>{row.BestellnummerHersteller || "N/A"}</td>
+              <td>{row.Type || "N/A"}</td>
+              <td>{row.Kurztext || "N/A"}</td>
+              <td>{row.Langtext || "N/A"}</td>
+              <td>{row.BestellNr || "N/A"}</td>
+            </tr>
+          ))
+        ) : (
+          
+          <tr>
+            <td colSpan="5" style={{ textAlign: "center" }}>No data available</td>
           </tr>
-        ))}
+        )}
       </tbody>
     </table>
   );

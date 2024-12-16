@@ -1,7 +1,10 @@
 import React from "react";
 import "./NavBar.css";
 
-const TopBar = () => {
+const TopBar = ({setIsLoggedIn}) => {
+  const logout = () =>{
+    setIsLoggedIn(false);
+  }
   return (
     <div className="top-bar">
       <div className="logo">
@@ -11,7 +14,7 @@ const TopBar = () => {
       </div>
       <span className="nav-title">MATERIAL DATENBANK</span>
       <div className="ext-btn">
-      <button className="exit-button">EXIT</button> 
+      <button className="exit-button" onClick={logout}>EXIT</button> 
 
       </div>
     </div>
