@@ -14,7 +14,7 @@ function Table({ categoryID }) {
       try {
         console.log(process.env.REACT_APP_API_URL)
         const response = await fetch(
-          `http://127.0.0.1:8000/material/products/?categoryID=${categoryID}`,
+          `${process.env.REACT_APP_API_URL}/material/products/?categoryID=${categoryID}`,
           {          }
         );
 
@@ -64,7 +64,7 @@ function Table({ categoryID }) {
       <tbody>
         {tableData && tableData.length > 0 ? (
           tableData.map((row, index) => (
-            <tr key={index}>
+            <tr style={{height: '5px'}} key={index}>
               <td>{row.BestellnummerHersteller || "N/A"}</td>
               <td>{row.Type || "N/A"}</td>
               <td>{row.Kurztext || "N/A"}</td>

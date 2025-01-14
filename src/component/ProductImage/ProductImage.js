@@ -8,7 +8,7 @@ const ProductSection = ({ categoryID }) => {
   // useEffect(() => {
   //   const fetchImages = async () => {
   //     try {
-  //       const response = await fetch(`http://127.0.0.1:8000/material/category-images/?categoryID=${categoryID}`, {
+  //       const response = await fetch(`${process.env.REACT_APP_API_URL}/material/category-images/?categoryID=${categoryID}`, {
   //       });
 
   //       if (!response.ok) {
@@ -41,7 +41,7 @@ const ProductSection = ({ categoryID }) => {
       setLoading(true); // Set loading state
       setError(null); // Reset error state
       try {
-          const response = await fetch(`http://127.0.0.1:8000/material/category-images/?categoryID=${categoryID}`, {
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/material/category-images/?categoryID=${categoryID}`, {
           });
   
           if (!response.ok) {
@@ -103,7 +103,7 @@ const ProductSection = ({ categoryID }) => {
               onClick={() => handleImageClick(image.image)}
             >
               <img
-                src={`http://127.0.0.1:8000${image.image}`}
+                src={`${process.env.REACT_APP_API_URL}${image.image}`}
                 alt={`Product ${index + 1}`}
                 className="thumbnail"
               />
@@ -122,7 +122,7 @@ const ProductSection = ({ categoryID }) => {
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close" onClick={closeModal}>&times;</span>
-            <img src={`http://127.0.0.1:8000${selectedImage}`} alt="Enlarged" className="modal-image" />
+            <img src={`${process.env.REACT_APP_API_URL}${selectedImage}`} alt="Enlarged" className="modal-image" />
           </div>
         </div>
       )}

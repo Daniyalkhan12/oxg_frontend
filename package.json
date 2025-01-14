@@ -1,5 +1,6 @@
 {
   "name": "oxl",
+  "homepage": "http://www.bill-of-materials.de/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "ajv": "^6.0.0",
     "ajv-keywords": "^3.0.0",
     "axios": "^1.7.9",
+    "dotenv": "^10.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "^5.0.1",

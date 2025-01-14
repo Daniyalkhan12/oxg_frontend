@@ -30,7 +30,7 @@ const Sidebar = ({ selectedComponent, onComponentChange }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/material/categories/");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/material/categories/`);
         console.log(response.data)
         if (response.data.length > 0){
           const defaultItem = response.data[0].name + "%" + response.data[0].categoryID

@@ -14,7 +14,7 @@ const DocumentSection = ({ categoryID }) => {
       setError(null);
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/material/category-pdfs/?categoryID=${categoryID}`
+          `${process.env.REACT_APP_API_URL}/material/category-pdfs/?categoryID=${categoryID}`
         );
 
         if (!response.ok) {
@@ -79,7 +79,7 @@ const DocumentSection = ({ categoryID }) => {
               <div key={pdf.id} className="pdf-icon">
                 <a href={pdf.pdf_file} target="_blank" rel="noopener noreferrer">
                   {/* PDF Icon */}
-                  <img src={pdfIcon} alt="PDF Icon" />
+                  <img style={{width: '30px', height: '30px'}}src={pdfIcon} alt="PDF Icon" />
                   {/* File Name */}
                   {pdf.pdf_file.split("/").pop()}
                 </a>

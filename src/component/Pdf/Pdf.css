@@ -1,5 +1,5 @@
 .document-section {
-  margin: 20px;
+  margin: 10px;
 }
 
 .section-header {
@@ -20,8 +20,8 @@
   flex-direction: column; /* Stack icon and text vertically */
   align-items: center; /* Center icon and text */
   justify-content: center;
-  width: 80px; /* Fixed width for consistency */
-  height: 100px; /* Fixed height for compact display */
+  width: 50px; /* Fixed width for consistency */
+  height: 70px; /* Fixed height for compact display */
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -34,7 +34,7 @@
 .pdf-icon a {
   text-decoration: none;
   color: #333;
-  font-size: 12px; /* Smaller text for filenames */
+  font-size: 7px; /* Smaller text for filenames */
   word-break: break-word; /* Ensure long filenames wrap */
 }
 

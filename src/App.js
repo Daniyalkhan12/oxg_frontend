@@ -26,10 +26,7 @@ function App() {
   };
   useEffect(() => {
     // Check if user is logged in (e.g., by checking local storage)
-    const storedToken = localStorage.getItem('token'); 
-    if (storedToken) {
-      setIsLoggedIn(true);
-    }
+
   }, []);
 
   return (

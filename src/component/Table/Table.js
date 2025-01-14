@@ -6,7 +6,7 @@ function Table({ categoryID }) {
   const [groupedData, setGroupedData] = useState({}); // Groups data by headings
 
   const fetchHeadingDetails = async () => {
-    const response = await fetch(`http://127.0.0.1:8000/material/heading-details/?categoryID=${categoryID}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/material/heading-details/?categoryID=${categoryID}`);
     const data = await response.json();
     console.log(data);
    

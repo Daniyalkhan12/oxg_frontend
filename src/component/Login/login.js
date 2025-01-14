@@ -13,16 +13,41 @@ const Login = ({ setIsLoggedIn }) => {
       setPassword(event.target.value);
     };
   
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
+      const login = {
+        "username": username, 
+        "password": password
+      }
+      console.log(process.env)
+      console.log(''+process.env+'/user/login/')
+      const response = await fetch(''+process.env.REACT_APP_API_URL+'/api/user/login/', {
+        method: 'POST',
+        body: JSON.stringify(login),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log(response)
+      const json = await response.json()
+      console.log(json)
+      if (json.code == 400){
+        alert("Username or Password wrong, Please try again!")
+        setIsLoggedIn(false)  
+      }
+      if (json.code == 200){
+        const access = json.data.access;
+        localStorage.setItem('accessToken', access);
+        const refresh = json.data.refresh;
+        localStorage.setItem('refreshToken', refresh);
+        const username = json.data.username;
+        localStorage.setItem('username', username);
+        setIsLoggedIn(true)
   
-      // **Replace with your actual authentication logic**
-      if (password === "dummy_password") { 
-        // Simulate successful login
-        localStorage.setItem('token', 'your_token_here'); 
-        setIsLoggedIn(true); 
-      } else {
-        alert("Incorrect password.");
+  
+       alert("User Logged in Successfully!")
+      //  navigate('/listingPage')
+      // window.location.href = "/listingPage"
       }
     };
 
