@@ -1,0 +1,87 @@
+/* Login.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d3d3d3; /* Light gray background */
+  }
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    margin-bottom: 10px;
+  }
+  
+  .logo-o {
+    color: red;
+  }
+  
+  .logo-x {
+    color: #00bcd4; /* Cyan or aqua color */
+    font-weight: bold;
+  }
+  
+  .logo-g {
+    color: yellow;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 10px 0 50px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #333;
+    margin-top: 0.6rem;
+    width: 10rem;
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    margin-left: 3rem
+  }
+  
+  .login-button {
+    padding: 10px;
+    font-size: 1rem;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #555;
+  }
+  
